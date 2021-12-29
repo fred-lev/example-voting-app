@@ -1,6 +1,9 @@
 # Example Voting App
 
-Based on [example-voting-app](https://github.com/dockersamples/example-voting-app)
+The code in this repo is based on:
+
+- [docker-example-voting-app](https://github.com/dockersamples/example-voting-app)
+- [lfs261-example-voting-app](https://github.com/lfs261/example-voting-app)
 
 ## Getting started
 
