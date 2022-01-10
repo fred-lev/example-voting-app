@@ -14,14 +14,12 @@ pipeline {
         }
         stage('test') {
             steps {
-                echo 'Running unit tests on worker app
-                maven ' '
+                echo 'Running unit tests on worker app'
             }
         }
         stage('package') {
             steps {
                 echo 'Packaging worker app'
-                maven ' '
             }
         }
     }
