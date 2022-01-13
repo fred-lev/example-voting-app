@@ -35,5 +35,11 @@ pipeline {
         always {
             echo 'End of the result App pipeline'
         }
+        failure {
+            slackSend (message: "Build Failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
+        }
+        success {
+            slackSend (message: "Build Succeeded - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
+        }
     }
 }
