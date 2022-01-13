@@ -8,7 +8,6 @@ pipeline {
             steps {
                 echo 'Compiling result nodejs app'
                 dir('result'){
-                    sh 'cd result'
                     sh 'npm install'
                     sh 'npm ls'
                 }
@@ -19,7 +18,6 @@ pipeline {
                 echo 'Running unit tests on result app'
                 echo 'Compiling result nodejs app'
                 dir('result'){
-                    sh 'cd result'
                     sh 'npm install'
                     sh 'npm ls'
                     sh 'npm test'
