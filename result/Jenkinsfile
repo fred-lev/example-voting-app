@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+    tools {
+        nodejs 'nodejs-8-9-0'
+    }
+    stages {
+        stage('build') {
+            when {
+                changeset "**/result/**"
+            }
+            steps {
+                echo 'Compiling result nodejs app'
+                dir('result'){
+                    sh 'cd result'
+                    sh 'npm install'
+                    sh 'npm ls'
+                }
+            }
+        }
+        stage('test') {
+            when {
+                changeset "**/result/**"
+            }
+            steps {
+                echo 'Running unit tests on result app'
+                echo 'Compiling result nodejs app'
+                dir('result'){
+                    sh 'cd result'
+                    sh 'npm install'
+                    sh 'npm ls'
+                    sh 'npm test'
+                }
+            }
+        }
+    }
+    post {
+        always {
+            echo 'End of the result App pipeline'
+        }
+    }
+}
