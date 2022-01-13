@@ -5,9 +5,6 @@ pipeline {
     }
     stages {
         stage('build') {
-            when {
-                changeset "**/result/**"
-            }
             steps {
                 echo 'Compiling result nodejs app'
                 dir('result'){
@@ -18,9 +15,6 @@ pipeline {
             }
         }
         stage('test') {
-            when {
-                changeset "**/result/**"
-            }
             steps {
                 echo 'Running unit tests on result app'
                 echo 'Compiling result nodejs app'
