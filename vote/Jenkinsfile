@@ -27,6 +27,8 @@ pipeline {
                 echo 'Running unit tests on vote app'
                     withEnv(["PYTHONPATH=${env.WORKSPACE}"]){
                         dir('vote'){
+                            sh 'ls -l /usr/bin'
+                            sh 'ls -l /usr/local/bin'
                             sh '/usr/bin/nosetests -v'
                         }
                     }
