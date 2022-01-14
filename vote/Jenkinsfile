@@ -12,11 +12,9 @@ pipeline {
             }
             steps {
                 echo 'Installing requirements for vote app'
-                dir('vote'){
+                withEnv(["HOME=${env.WORKSPACE}"]) dir('vote'){
                     sh 'python --version'
-                    sh 'virtualenv venv --distribute'
-                    sh '. venv/bin/activate'
-                    sh 'pip install -r requirements.txt'
+                    sh 'pip install -r requirements.txt --user'
                 }
             }
         }
