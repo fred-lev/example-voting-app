@@ -7,9 +7,39 @@ pipeline {
     }
     stages {
         stage('build') {
-            steps {
-                sh 'python --version'
+            when {
+                changeset "**/vote/**"
             }
+            steps {
+                echo 'Installing requirements for vote app'
+                dir('vote'){
+                    sh 'python --version'
+                    sh 'pip install -i requirements.txt'
+                }
+            }
+        }
+        stage('test') {
+            when {
+                changeset "**/vote/**"
+            }
+            steps {
+                echo 'Running unit tests on vote app'
+                dir('vote'){
+                    sh 'nosetests -v'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'End of the vote App pipeline'
+        }
+        failure {
+            slackSend (color: "danger", message: "Build Failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
+        }
+        success {
+            slackSend (color: "good", message: "Build Succeeded - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
         }
     }
 }
