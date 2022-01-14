@@ -2,7 +2,7 @@ pipeline {
     agent {
       docker
       {
-        image 'python:2.7.16-slim'
+        image 'python:alpine3.15'
       }
     }
     stages {
@@ -13,6 +13,8 @@ pipeline {
             steps {
                 echo 'Installing requirements for vote app'
                     dir('vote'){
+                        sh 'python3 -m venv env'
+                        sh 'source ./env/bin/activate'
                         sh 'pip install -r requirements.txt'
                     }
             }
