@@ -30,6 +30,7 @@ pipeline {
                             sh 'export PATH="$(python -m site --user-base)/bin:$(python -m site --user-site)/bin:$PATH"'
                             sh 'which nosetests'
                             sh 'nosetests -v'
+                            sh 'sleep 60000'
                         }
                     }
                 }
