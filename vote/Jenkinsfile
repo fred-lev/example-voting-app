@@ -14,8 +14,8 @@ pipeline {
                 echo 'Installing requirements for vote app'
                 dir('vote'){
                     sh 'python --version'
-                    sh 'pip3 install --upgrade pip'
-                    sh 'pip3 install -i requirements.txt'
+                    sh 'pip3 install --upgrade pip --user'
+                    sh 'pip3 install -r requirements.txt --user'
                 }
             }
         }
