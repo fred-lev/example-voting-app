@@ -26,8 +26,10 @@ pipeline {
             }
             steps {
                 echo 'Running unit tests on vote app'
-                dir('vote'){
-                    sh 'nose tests -v'
+                withEnv(["HOME=${env.WORKSPACE}"]){
+                    dir('vote'){
+                        sh 'nosetests -v'
+                    }
                 }
             }
         }
