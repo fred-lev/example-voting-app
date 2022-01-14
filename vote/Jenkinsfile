@@ -15,7 +15,7 @@ pipeline {
                 withEnv(["HOME=${env.WORKSPACE}"]){
                     dir('vote'){
                         sh 'python --version'
-                        sh 'pip install -r requirements.txt --user'
+                        sh 'pip install -r requirements.txt'
                     }
                 }
             }
