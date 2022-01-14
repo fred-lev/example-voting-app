@@ -12,12 +12,9 @@ pipeline {
             }
             steps {
                 echo 'Installing requirements for vote app'
-                withEnv(["HOME=${env.WORKSPACE}"]){
                     dir('vote'){
-                        sh 'python --version'
                         sh 'pip install -r requirements.txt'
                     }
-                }
             }
         }
         stage('test') {
@@ -26,12 +23,10 @@ pipeline {
             }
             steps {
                 echo 'Running unit tests on vote app'
-                withEnv(["HOME=${env.WORKSPACE}"]){
                     dir('vote'){
                         sh 'nosetests -v'
                     }
                 }
-            }
         }
     }
 
