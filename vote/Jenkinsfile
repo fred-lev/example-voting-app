@@ -25,12 +25,9 @@ pipeline {
             }
             steps {
                 echo 'Running unit tests on vote app'
-                    withEnv(["HOME=${env.WORKSPACE}"]){
+                    withEnv(["PYTHONPATH=${env.WORKSPACE}"]){
                         dir('vote'){
-                            sh 'ls -l'
-                            sh 'which nosetests'
-                            sh 'echo $PATH'
-                            sh 'nosetests -v'
+                            sh '/usr/bin/nosetests -v'
                         }
                     }
                 }
