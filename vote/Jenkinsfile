@@ -14,7 +14,7 @@ pipeline {
                 echo 'Installing requirements for vote app'
                 dir('vote'){
                     sh 'python --version'
-                    sh 'pip install -i requirements.txt'
+                    sh 'pip install -i requirements.txt --user'
                 }
             }
         }
