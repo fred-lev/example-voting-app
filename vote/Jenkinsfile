@@ -27,9 +27,8 @@ pipeline {
                 echo 'Running unit tests on vote app'
                     withEnv(["HOME=${env.WORKSPACE}"]){
                         dir('vote'){
-                            sh 'export PATH="/Users/$USER/Library/Python/2.7/bin:$PATH"'
-                            sh 'export PATH="$HOME/.local/lib/python2.7/site-packages:$PATH"'
-                            sh 'nosetests -v'
+                        sh 'python -m site --user-base'
+                        sh 'python -m site --user-site'
                         }
                     }
                 }
