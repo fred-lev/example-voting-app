@@ -28,6 +28,7 @@ pipeline {
                     withEnv(["HOME=${env.WORKSPACE}"]){
                         dir('vote'){
                             sh 'export PATH="$(python -m site --user-base)/bin:$(python -m site --user-site)/bin:$PATH"'
+                            sh 'which nosetests'
                             sh 'nosetests -v'
                         }
                     }
