@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN mvn clean package
+RUN mvn package -DskipTests && \
+  mv target/worker-jar-with-dependencies.jar /run/worker.jar && \
+  rm -rf /app/*
 
-CMD java -jar target/worker.jar
+CMD java -jar /run/worker.jar
