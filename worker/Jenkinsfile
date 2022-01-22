@@ -41,15 +41,6 @@ pipeline {
                 }
             }
         }
-
-        stage('docker-check') {
-            steps {
-                echo 'check docker config'
-                    sh 'docker -v'
-                    sh 'docker info'
-            }
-        }
-
         stage('docker-package') {
             when {
                 branch 'main'
@@ -58,11 +49,13 @@ pipeline {
             steps {
                 echo 'Packaging worker app in docker'
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
-                        def customImage = docker.build("fredflev/worker:v${env.BUILD_ID}", "./worker")
-                        customImage.push()
-                        customImage.push("${env.BRANCH_NAME}")
-                        customImage.push("latest")
+                    docker.withServer ('tcp://docker:2376') {
+                        docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
+                            def customImage = docker.build("fredflev/worker:v${env.BUILD_ID}", "./worker")
+                            customImage.push()
+                            customImage.push("${env.BRANCH_NAME}")
+                            customImage.push("latest")
+                        }
                     }
                 }
             }
