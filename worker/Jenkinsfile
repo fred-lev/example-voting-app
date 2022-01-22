@@ -41,6 +41,15 @@ pipeline {
                 }
             }
         }
+
+        stage('docker-check') {
+            steps {
+                echo 'check docker config'
+                    sh 'docker -v'
+                    sh 'docker info'
+            }
+        }
+
         stage('docker-package') {
             when {
                 branch 'main'
