@@ -53,7 +53,7 @@ pipeline {
                         def customImage = docker.build("fredflev/worker:v${env.BUILD_ID}", "./worker")
                         customImage.push()
                         customImage.push("${env.BRANCH_NAME}")
-                        customImage.push('latest')
+                        customImage.push("latest")
                     }
                 }
             }
