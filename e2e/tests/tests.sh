@@ -4,30 +4,30 @@ current=""
 next=""
 
 while ! timeout 1 bash -c "echo > /dev/tcp/vote/80"; do
-    sleep 1
+  sleep 1
 done
 
-# add initial vote 
-curl -sS -X POST --data "vote=a" http://vote > /dev/null
+# add initial vote
+curl -sS -X POST --data "vote=a" http://vote >/dev/null
 
-current=`phantomjs render.js "http://result:4000/" | grep -i vote | cut -d ">" -f 4 | cut -d " " -f1`
-next=`echo "$(($current + 1))"`
+current=$(phantomjs render.js "http://result:4000/" | grep -i vote | cut -d ">" -f 4 | cut -d " " -f1)
+# shellcheck disable=SC2116
+next=$(echo "($current + 1))")
 
-  echo -e "\n\n-----------------"
-  echo -e "Current Votes Count: $current"
-  echo -e "-----------------\n"
+echo -e "\n\n-----------------"
+echo -e "Current Votes Count: $current"
+echo -e "-----------------\n"
 
 echo -e " I: Submitting one more vote...\n"
 
-curl -sS -X POST --data "vote=b" http://vote > /dev/null
+curl -sS -X POST --data "vote=b" http://vote >/dev/null
 sleep 3
 
-new=`phantomjs render.js "http://result:4000/" | grep -i vote | cut -d ">" -f 4 | cut -d " " -f1`
+new=$(phantomjs render.js "http://result:4000/" | grep -i vote | cut -d ">" -f 4 | cut -d " " -f1)
 
-
-  echo -e "\n\n-----------------"
-  echo -e "New Votes Count: $new"
-  echo -e "-----------------\n"
+echo -e "\n\n-----------------"
+echo -e "New Votes Count: $new"
+echo -e "-----------------\n"
 
 echo -e "I: Checking if votes tally......\n"
 
