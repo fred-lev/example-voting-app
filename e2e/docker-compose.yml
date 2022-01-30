@@ -1,4 +1,7 @@
 version: '3.7'
+networks:
+  frontend:
+  backend:
 services:
 
   db:
@@ -10,11 +13,11 @@ services:
   e2e:
     build: ./tests/
     depends_on:
-      - vote
-      - result
-      - worker
       - db
       - redis
+      - result
+      - vote
+      - worker
     networks:
       - frontend
 
@@ -29,33 +32,28 @@ services:
     ports:
       - 4000:4000
     depends_on:
-      - redis
       - db
     networks:
-      - frontend
       - backend
+      - frontend
 
   vote:
     image: ${VOTE_IMAGE}
     ports:
       - 80:80
     depends_on:
-      - redis
       - db
+      - redis
     networks:
-      - frontend
       - backend
+      - frontend
   worker:
     image: ${WORKER_IMAGE}
     depends_on:
-      - redis
       - db
+      - redis
     networks:
       - backend
 
 volumes:
   db-data:
-
-networks:
-  frontend:
-  backend:
