@@ -1,6 +1,6 @@
-import { args } from 'system';
+var system = require('system');
 var page = require('webpage').create();
-var url = args[1];
+var url = system.args[1];
 
 page.onLoadFinished = function () {
   setTimeout(function () {
