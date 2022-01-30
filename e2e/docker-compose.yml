@@ -3,15 +3,6 @@ networks:
   frontend:
   backend:
 services:
-
-  db:
-    image: postgres:9.4
-    environment:
-      - POSTGRES_HOST_AUTH_METHOD=trust
-    volumes:
-      - "dbdata:/var/lib/postgresql/data"
-    networks:
-      - backend
   e2e:
     build: ./tests/
     depends_on:
@@ -22,6 +13,14 @@ services:
       - worker
     networks:
       - frontend
+  db:
+    image: postgres:9.4
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+    networks:
+      - backend
 
   redis:
     image: redis:alpine
@@ -44,7 +43,6 @@ services:
     ports:
       - 80:80
     depends_on:
-      - db
       - redis
     networks:
       - backend
