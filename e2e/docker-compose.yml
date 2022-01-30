@@ -14,7 +14,8 @@ services:
 
   vote:
     image: ${VOTE_IMAGE}
-    ports: [ "80" ]
+    ports:
+      - 80:80
     depends_on:
       - redis
       - db
@@ -24,7 +25,8 @@ services:
 
   result:
     image: ${RESULT_IMAGE}
-    ports: [ "4000" ]
+    ports:
+      - 4000:4000
     depends_on:
       - redis
       - db
