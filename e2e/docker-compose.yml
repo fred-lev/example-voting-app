@@ -1,6 +1,12 @@
 version: '3.1'
 services:
 
+  db:
+    image: postgres:9.4
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    networks:
+      - back-tier
   e2e:
     build: ./tests/
     depends_on:
@@ -9,18 +15,14 @@ services:
       - worker
       - db
       - redis
+      - test
     networks:
       - front-tier
 
-  vote:
-    image: ${VOTE_IMAGE}
-    ports:
-      - 80:80
-    depends_on:
-      - redis
-      - db
+  redis:
+    image: redis:alpine
+    ports: [ "6379" ]
     networks:
-      - front-tier
       - back-tier
 
   result:
@@ -34,24 +36,29 @@ services:
       - front-tier
       - back-tier
 
+  test:
+    image: test-image
+    depends_on:
+      - result
+      - vote
+    networks:
+      - front-tier
+
+  vote:
+    image: ${VOTE_IMAGE}
+    ports:
+      - 80:80
+    depends_on:
+      - redis
+      - db
+    networks:
+      - front-tier
+      - back-tier
   worker:
     image: ${WORKER_IMAGE}
     depends_on:
       - redis
       - db
-    networks:
-      - back-tier
-
-  redis:
-    image: redis:alpine
-    ports: [ "6379" ]
-    networks:
-      - back-tier
-
-  db:
-    image: postgres:9.4
-    environment:
-      - POSTGRES_HOST_AUTH_METHOD=trust
     networks:
       - back-tier
 
