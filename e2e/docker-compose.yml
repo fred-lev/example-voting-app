@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.7'
 services:
 
   db:
@@ -6,7 +6,7 @@ services:
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
     networks:
-      - back-tier
+      - backend
   e2e:
     build: ./tests/
     depends_on:
@@ -16,13 +16,13 @@ services:
       - db
       - redis
     networks:
-      - front-tier
+      - frontend
 
   redis:
     image: redis:alpine
     ports: [ "6379" ]
     networks:
-      - back-tier
+      - backend
 
   result:
     image: ${RESULT_IMAGE}
@@ -32,8 +32,8 @@ services:
       - redis
       - db
     networks:
-      - front-tier
-      - back-tier
+      - frontend
+      - backend
 
   vote:
     image: ${VOTE_IMAGE}
@@ -43,19 +43,19 @@ services:
       - redis
       - db
     networks:
-      - front-tier
-      - back-tier
+      - frontend
+      - backend
   worker:
     image: ${WORKER_IMAGE}
     depends_on:
       - redis
       - db
     networks:
-      - back-tier
+      - backend
 
 volumes:
   db-data:
 
 networks:
-  front-tier:
-  back-tier:
+  frontend:
+  backend:
