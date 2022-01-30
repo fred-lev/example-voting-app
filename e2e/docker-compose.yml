@@ -15,7 +15,6 @@ services:
       - worker
       - db
       - redis
-      - test
     networks:
       - front-tier
 
@@ -35,14 +34,6 @@ services:
     networks:
       - front-tier
       - back-tier
-
-  test:
-    image: test-image
-    depends_on:
-      - result
-      - vote
-    networks:
-      - front-tier
 
   vote:
     image: ${VOTE_IMAGE}
