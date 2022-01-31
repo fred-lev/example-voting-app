@@ -192,8 +192,8 @@ pipeline {
                     branch 'main'
                 }
                 steps{
-                    echo 'Run end to end testing'
-                    sh './e2e.sh'
+                    echo 'deploy to dev'
+                    sh 'docker-compose up -d
                 }
         }
     }
