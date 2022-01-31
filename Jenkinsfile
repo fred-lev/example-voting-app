@@ -186,6 +186,16 @@ pipeline {
                 }
             }
         }
+        stage('deploy to dev'){
+                agent any
+                when{
+                    branch 'main'
+                }
+                steps{
+                    echo 'Deploy instavote app with docker compose'
+                    sh 'e2e.sh'
+                }
+        }
     }
     post {
         always {
