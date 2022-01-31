@@ -193,7 +193,9 @@ pipeline {
                 }
                 steps{
                     echo 'deploy to dev'
-                    sh 'docker-compose up -d'
+                    dir('e2e'){
+                        sh 'docker-compose up -d'
+                    }
                 }
         }
     }
