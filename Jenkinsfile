@@ -198,6 +198,16 @@ pipeline {
                     }
                 }
         }
+        stage('Run end to end testing'){
+                agent any
+                when{
+                    branch 'main'
+                }
+                steps{
+                    echo 'Run end to end testing'
+                    sh './e2e.sh'
+                }
+        }
     }
     post {
         always {
