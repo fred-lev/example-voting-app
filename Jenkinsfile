@@ -192,8 +192,8 @@ pipeline {
                     branch 'main'
                 }
                 steps{
-                    echo 'Deploy instavote app with docker compose'
-                    sh 'e2e.sh'
+                    echo 'Run end to end testing'
+                    sh './e2e.sh'
                 }
         }
     }
