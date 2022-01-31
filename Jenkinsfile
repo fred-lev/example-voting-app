@@ -193,7 +193,7 @@ pipeline {
                 }
                 steps{
                     echo 'deploy to dev'
-                    sh 'docker-compose up -d
+                    sh 'docker-compose up -d'
                 }
         }
     }
