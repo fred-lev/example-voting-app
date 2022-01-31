@@ -1,18 +1,8 @@
-version: '3.7'
+version: '3.8'
 networks:
-  frontend:
-  backend:
+  instavote:
+    driver: bridge
 services:
-  e2e:
-    build: ./tests/
-    depends_on:
-      - db
-      - redis
-      - result
-      - vote
-      - worker
-    networks:
-      - frontend
   db:
     image: postgres:9.4
     environment:
@@ -20,13 +10,12 @@ services:
     volumes:
       - "dbdata:/var/lib/postgresql/data"
     networks:
-      - backend
-
+      - instavote
   redis:
     image: redis:alpine
     ports: [ "6379" ]
     networks:
-      - backend
+      - instavote
 
   result:
     image: ${RESULT_IMAGE}
@@ -35,9 +24,7 @@ services:
     depends_on:
       - db
     networks:
-      - backend
-      - frontend
-
+      - instavote
   vote:
     image: ${VOTE_IMAGE}
     ports:
@@ -45,15 +32,14 @@ services:
     depends_on:
       - redis
     networks:
-      - backend
-      - frontend
+      - instavote
   worker:
     image: ${WORKER_IMAGE}
     depends_on:
       - db
       - redis
     networks:
-      - backend
+      - instavote
 
 volumes:
   dbdata:
