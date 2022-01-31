@@ -1,9 +1,7 @@
 version: '3.8'
 networks:
   frontend:
-    driver: bridge
   backend:
-    driver: bridge
 services:
   e2e:
     build: ./tests/
