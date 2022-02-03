@@ -203,6 +203,9 @@ pipeline {
             }
         }
         stage("Quality Gate") {
+           when {
+                branch 'main'
+            }
             steps {
                 sleep(5)
                 timeout(time: 5, unit: 'MINUTES') {
