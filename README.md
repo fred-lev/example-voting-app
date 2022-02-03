@@ -23,6 +23,11 @@ The end to end testing script will bring down the environement if the test cases
 
 https://github.com/fred-lev/example-voting-app/blob/799c6e6c4793e80e4c31972da299a2bb5ddceac0/e2e.sh#L1-L16
 
+Jenkins pipeline with E2E testing based on [Jenkinsfile](./Jenkinsfile)
+
+![image](https://user-images.githubusercontent.com/42792052/152315740-8116bff6-f266-4d70-a06c-ddb0b084e2f6.png)
+
+
 ## Run the app in k8s
 
 The folder k8s-specifications contains the yaml specifications of the Voting App's services.
