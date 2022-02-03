@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 
 services:
 
@@ -9,7 +9,7 @@ services:
 
   vote:
     build: ../
-    ports: ["80"]
+    ports: [ "80" ]
     depends_on:
       - redis
     networks:
@@ -17,10 +17,9 @@ services:
 
   redis:
     image: redis:alpine
-    ports: ["6379"]
+    ports: [ "6379" ]
     networks:
       - integration
 
 networks:
   integration:
-
