@@ -9,13 +9,16 @@ The code in this repo is based on:
 
 ## Getting started
 
-Run in this directory:
+You can test the end to end deployement of the Apps container with docker compose by running the `e2e.sh` script: 
 
 ```console
-docker-compose up -d
+git checkout This_Repo
+bash -x ./e2e.sh
 ```
 
 The voting app will be running at [http://localhost:4000](http://localhost:4000), and the results will be available at [http://localhost](http://localhost).
+
+The end to end testing script will bring down the environement if the test cases are successfull by calling `docker-compose down`. 
 
 ## Run the app in k8s
 
