@@ -1,5 +1,7 @@
 # Example Voting App
 
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=fred-lev_example-voting-app)](https://sonarcloud.io/summary/new_code?id=fred-lev_example-voting-app)
+
 The code in this repo is based on:
 
 - [docker-example-voting-app](https://github.com/dockersamples/example-voting-app)
