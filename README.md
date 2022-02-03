@@ -12,7 +12,8 @@ The code in this repo is based on:
 You can test the end to end deployement of the Apps container with docker compose by running the `e2e.sh` script: 
 
 ```console
-git checkout This_Repo
+git clone git@github.com:fred-lev/example-voting-app.git
+cd ./example-voting-app && git checkout main
 bash -x ./e2e.sh
 ```
 
