@@ -148,7 +148,7 @@ pipeline {
                     }
             }
         }
-        stage('vote: test') {
+        stage('vote: unit tests') {
             when {
                 branch 'main'
                 changeset "**/vote/**"
@@ -165,6 +165,19 @@ pipeline {
                     dir('vote'){
                         sh 'pip install -r requirements.txt'
                         sh 'nosetests -v'
+                    }
+                }
+        }
+        stage('vote: integration tests') {
+            agent any
+            when {
+                branch 'main'
+                changeset "**/vote/**"
+            }
+            steps {
+                echo 'Running integration tests on vote app'
+                    dir('vote'){
+                        sh './integration_test.sh'
                     }
                 }
         }
