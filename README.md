@@ -9,29 +9,21 @@ The code in this repo is based on:
 
 ## Getting started
 
-Download [Docker](https://www.docker.com/products/overview). If you are on Mac or Windows, [Docker Compose](https://docs.docker.com/compose) will be automatically installed. On Linux, make sure you have the latest version of [Compose](https://docs.docker.com/compose/install/). If you're using [Docker for Windows](https://docs.docker.com/docker-for-windows/) on Windows 10 pro or later, you must also [switch to Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
+Download [Docker](https://www.docker.com/products/overview). 
+
+If you are on Mac, [Docker Compose](https://docs.docker.com/compose) will be automatically installed. 
+
+On Linux, make sure you have the latest version of [Compose](https://docs.docker.com/compose/install/). 
 
 Run in this directory:
 
 ```console
-docker-compose up
+docker-compose up -d
 ```
 
-The app will be running at [http://localhost:5000](http://localhost:5000), and the results will be at [http://localhost:5001](http://localhost:5001).
+The voting app will be running at [http://localhost:4000](http://localhost:4000), and the results will be available at [http://localhost](http://localhost).
 
-Alternately, if you want to run it on a [Docker Swarm](https://docs.docker.com/engine/swarm/), first make sure you have a swarm. If you don't, run:
-
-```console
-docker swarm init
-```
-
-Once you have your swarm, in this directory run:
-
-```console
-docker stack deploy --compose-file docker-stack.yml vote
-```
-
-## Run the app in Kubernetes
+## Run the app in k8s
 
 The folder k8s-specifications contains the yaml specifications of the Voting App's services.
 
