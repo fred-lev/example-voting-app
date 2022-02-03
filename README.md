@@ -18,7 +18,9 @@ bash -x ./e2e.sh
 
 The voting app will be running at [http://localhost:4000](http://localhost:4000), and the results will be available at [http://localhost](http://localhost).
 
-The end to end testing script will bring down the environement if the test cases are successfull by calling `docker-compose down`. 
+The end to end testing script will bring down the environement if the test cases are successfull by calling `docker-compose down` as defined in the script:
+
+https://github.com/fred-lev/example-voting-app/blob/799c6e6c4793e80e4c31972da299a2bb5ddceac0/e2e.sh#L1-L16
 
 ## Run the app in k8s
 
