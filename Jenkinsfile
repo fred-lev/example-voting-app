@@ -186,6 +186,7 @@ pipeline {
                 }
             }
         }
+        // Sonarqube doc: https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-jenkins/
         stage('Sonarqube') {
             agent any
             when {
