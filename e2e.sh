@@ -1,12 +1,15 @@
 #!/bin/bash
 
+set -o errexit
+set -o nounset
+set -o pipefail
+
 cd e2e || exit
 
 docker-compose down >/dev/null 2>&1
 
-#sleep 10
-
 docker-compose build
+
 docker-compose up -d
 
 docker-compose ps
