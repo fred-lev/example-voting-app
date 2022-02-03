@@ -1,6 +1,6 @@
 # Example Voting App
 
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=fred-lev_example-voting-app)](https://sonarcloud.io/summary/new_code?id=fred-lev_example-voting-app)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=fred-lev_example-voting-app&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=fred-lev_example-voting-app)
 
 The code in this repo is based on:
 
