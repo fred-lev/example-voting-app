@@ -9,7 +9,7 @@ The code in this repo is based on:
 
 ## Getting started
 
-You can test the end to end deployement of the Apps container with docker compose by running the `e2e.sh` script:
+You can test the end to end deployment of the Apps container with docker compose by running the `e2e.sh` script:
 
 ```console
 git clone git@github.com:fred-lev/example-voting-app.git
@@ -19,7 +19,7 @@ bash -x ./e2e.sh
 
 The voting app will be running at [http://localhost:4000](http://localhost:4000), and the results will be available at [http://localhost](http://localhost).
 
-The end to end testing script will bring down the environement if the test cases are successfull by calling `docker-compose down` as defined in the script:
+The end to end testing script will bring down the environment if the test cases are successfully by calling `docker-compose down` as defined in the script:
 
 https://github.com/fred-lev/example-voting-app/blob/799c6e6c4793e80e4c31972da299a2bb5ddceac0/e2e.sh#L1-L16
 
@@ -27,12 +27,11 @@ Jenkins pipeline with E2E testing based on [Jenkinsfile](./Jenkinsfile)
 
 ![image](https://user-images.githubusercontent.com/42792052/152315740-8116bff6-f266-4d70-a06c-ddb0b084e2f6.png)
 
-
 ## Run the app in k8s
 
-The folder k8s-specifications contains the yaml specifications of the Voting App's services.
+The [k8s-manifests directory](./k8s-manifests/) contains the yaml specifications of the Voting App's services.
 
-Run the following command to create the deployments and services objects:
+Run the following command to create the deployments and services k8s objects:
 
 ```console
 $ kubectl create -f k8s-manifests/
@@ -47,17 +46,17 @@ deployment.apps/vote created
 deployment.apps/worker created
 ```
 
-The vote interface is available on port 30500 on each host of the cluster, the result one is available on port 30501.
+The vote interface is available on port 30500 on each worker host of the cluster, the result one is available on port 30501.
 
 ## Architecture
 
 ![Architecture diagram](architecture.png)
 
-* A Python webapp which lets you vote between two options
-* A Redis queue which collects new votes
-* A .NET worker which consumes votes and stores them in…
-* A Postgres database backed by a Docker volume
-* A Node.js webapp which shows the results of the voting in real time
+- A Python webapp which lets you vote between two options
+- A Redis queue which collects new votes
+- A .NET worker which consumes votes and stores them in…
+- A Postgres database backed by a Docker volume
+- A Node.js webapp which shows the results of the voting in real time
 
 ## Note
 
