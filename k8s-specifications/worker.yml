@@ -2,22 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: vote
-  name: vote
+    app: worker
+  name: worker
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: vote
+      app: worker
   strategy: {}
   template:
     metadata:
       labels:
-        app: vote
+        app: worker
     spec:
       containers:
-        - image: fredflev/redis:main
-          name: vote
+        - image: fredflev/worker:main
+          name: worker
           resources:
             requests:
               memory: "64Mi"

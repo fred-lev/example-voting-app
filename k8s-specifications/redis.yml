@@ -6,7 +6,7 @@ metadata:
     app: redis
   name: redis
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: redis
@@ -26,4 +26,3 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "500m"
-status: {}
