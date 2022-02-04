@@ -9,7 +9,7 @@ The code in this repo is based on:
 
 ## Getting started
 
-You can test the end to end deployement of the Apps container with docker compose by running the `e2e.sh` script: 
+You can test the end to end deployement of the Apps container with docker compose by running the `e2e.sh` script:
 
 ```console
 git clone git@github.com:fred-lev/example-voting-app.git
@@ -35,19 +35,19 @@ The folder k8s-specifications contains the yaml specifications of the Voting App
 Run the following command to create the deployments and services objects:
 
 ```console
-$ kubectl create -f k8s-specifications/
-deployment "db" created
-service "db" created
-deployment "redis" created
-service "redis" created
-deployment "result" created
-service "result" created
-deployment "vote" created
-service "vote" created
-deployment "worker" created
+$ kubectl create -f k8s-manifests/
+service/db created
+deployment.apps/postgres created
+service/redis created
+deployment.apps/redis created
+service/result created
+deployment.apps/result created
+service/vote created
+deployment.apps/vote created
+deployment.apps/worker created
 ```
 
-The vote interface is then available on port 31000 on each host of the cluster, the result one is available on port 31001.
+The vote interface is available on port 30500 on each host of the cluster, the result one is available on port 30501.
 
 ## Architecture
 

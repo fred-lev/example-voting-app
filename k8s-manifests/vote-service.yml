@@ -2,16 +2,16 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: result
-  name: result
+    app: vote
+  name: vote
   namespace: default
 spec:
   ports:
-    - name: "4000"
-      nodePort: 32088
-      port: 4000
+    - name: "80"
+      nodePort: 30500
+      port: 80
       protocol: TCP
-      targetPort: 4000
+      targetPort: 80
   selector:
-    app: result
+    app: vote
   type: NodePort
