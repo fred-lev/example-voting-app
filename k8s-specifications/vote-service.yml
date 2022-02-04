@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: vote-service
+  name: vote-service
+  namespace: default
+spec:
+  ports:
+    - name: "80"
+      nodePort: 32086
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: vote
+  type: NodePort
